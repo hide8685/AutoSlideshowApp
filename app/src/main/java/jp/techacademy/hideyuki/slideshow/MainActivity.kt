@@ -82,6 +82,10 @@ class MainActivity :  AppCompatActivity() {
                     createCursol()
                     getContentsInfo()
                     start_stop.text="停止"
+                }else{
+                    start_stop.isEnabled = false
+                    step.isEnabled = false
+                    back.isEnabled = false
                 }
         }
     }
@@ -133,7 +137,7 @@ class MainActivity :  AppCompatActivity() {
                 moveCursol(true)
             }
 
-        }, 2000, 2000)
+        }, 0, 2000)
         step.isEnabled = false
         back.isEnabled = false
     }
