@@ -79,7 +79,9 @@ class MainActivity :  AppCompatActivity() {
         when (requestCode) {
             PERMISSIONS_REQUEST_CODE ->
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    createCursol()
                     getContentsInfo()
+                    start_stop.text="停止"
                 }
         }
     }
