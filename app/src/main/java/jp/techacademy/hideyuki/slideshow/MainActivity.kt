@@ -32,6 +32,7 @@ class MainActivity :  AppCompatActivity() {
                 // 許可されている
                 createCursol()
                 getContentsInfo()
+                start_stop.text="停止"
             } else {
                 // 許可されていないので許可ダイアログを表示する
                 requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), PERMISSIONS_REQUEST_CODE)
@@ -40,14 +41,21 @@ class MainActivity :  AppCompatActivity() {
         } else {
             createCursol()
             getContentsInfo()
+            start_stop.text="停止"
         }
 
         start_stop.setOnClickListener {
             if (mTimer == null) {
                 getContentsInfo()
+                start_stop.text="停止"
+                step.isEnabled = false
+                back.isEnabled = false
             } else {
                 mTimer!!.cancel()
                 mTimer = null
+                start_stop.text="再生"
+                step.isEnabled = true
+                back.isEnabled = true
             }
         }
 
@@ -111,10 +119,10 @@ class MainActivity :  AppCompatActivity() {
             imageView.setImageURI(imageUri)
             Log.d("Image","$imageUri")
         }
+
     }
 
     private fun getContentsInfo() {
-
 
         // タイマーの始動
         mTimer = Timer()
@@ -124,7 +132,8 @@ class MainActivity :  AppCompatActivity() {
             }
 
         }, 2000, 2000)
-
+        step.isEnabled = false
+        back.isEnabled = false
     }
 
 
